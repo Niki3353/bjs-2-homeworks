@@ -2,34 +2,51 @@
 //Задание 1
 
 function solveEquation(a,b,c){
-    let x1, x2, d, x;
-    d = Math.pow(b,2) - 4*a*c;
+    let result = [];
+    let x1 = null, x2 = null;
+    let d = Math.pow(b,2) - 4*a*c;
     console.log("Дискриминант равен: " + d)
     
-    if(d < 0) console.log("Корней нет. Массив пустой.")
+    if(d < 0){ 
+        console.log("Корней нет. Массив пустой.")
+        return result;
+    }
     if(d == 0){
         x1 = -b/(2*a);
-        console.log("Значение корня равно: " + x)
+        result.push(x1);
+        return result;
     }
     if(d > 0){
         x1 = (-b + Math.sqrt(d) )/(2*a);
         x2 = (-b - Math.sqrt(d) )/(2*a);
-        console.log("Значение первого корня: " + x1 + "; " + "\n" + "Значение второго корня: " + x2 + ".")
+        result.push(x1);
+        result.push(x2);
+        return result;
     }
 }
-solveEquation(1, 2, 10);
+console.log(solveEquation(2, -5, 3));
+
 
 
 //Задание 2
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths){
-    let credit, pay;
     
-    credit = amount - contribution;
-    console.log("Сумма, которую нужно вернуть банку с учетом первоначального взноса равна: " + credit);
 
-    pay = credit * (percent + (percent/((Math.pow(1 + percent), countMonths)-1)));
-    console.log("Сумма оплаты креита равна: " + pay)
+    percent = percent / 100; 
+    let monthlyPayment  = percent / 12; 
+    let credit = amount - contribution; 
+    let payment = credit * (monthlyPayment + (monthlyPayment / (Math.pow((1 + monthlyPayment), countMonths) - 1))); 
+    let totalAmount = payment * countMonths; 
+    return totalAmount.toFixed(2);
 }
+let result = Number(calculateTotalMortgage(10, 0, 50000, 12));
+console.log(result);
 
-calculateTotalMortgage(10, 1000, 50000, 12);
+
+
+
+
+
+
+
