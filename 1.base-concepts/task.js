@@ -3,7 +3,6 @@
 
 function solveEquation(a,b,c){
     let result = [];
-    let x1 = null, x2 = null;
     let d = Math.pow(b,2) - 4*a*c;
     console.log("Дискриминант равен: " + d)
     
@@ -12,19 +11,21 @@ function solveEquation(a,b,c){
         return result;
     }
     if(d == 0){
-        x1 = -b/(2*a);
+        let x1 = -b/(2*a);
         result.push(x1);
         return result;
     }
     if(d > 0){
-        x1 = (-b + Math.sqrt(d) )/(2*a);
-        x2 = (-b - Math.sqrt(d) )/(2*a);
+        let x1 = (-b + Math.sqrt(d) )/(2*a);
+        let x2 = (-b - Math.sqrt(d) )/(2*a);
         result.push(x1);
         result.push(x2);
         return result;
     }
 }
+// let num = Number(solveEquation(2, -5, 3));
 console.log(solveEquation(2, -5, 3));
+
 
 
 
@@ -38,9 +39,11 @@ function calculateTotalMortgage(percent, contribution, amount, countMonths){
     let credit = amount - contribution; 
     let payment = credit * (monthlyPayment + (monthlyPayment / (Math.pow((1 + monthlyPayment), countMonths) - 1))); 
     let totalAmount = payment * countMonths; 
-    return totalAmount.toFixed(2);
+    
+    return +totalAmount.toFixed(2);
+
 }
-let result = Number(calculateTotalMortgage(10, 0, 50000, 12));
+let result = calculateTotalMortgage(15, 0, 10000, 36);
 console.log(result);
 
 
