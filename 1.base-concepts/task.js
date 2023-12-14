@@ -23,7 +23,7 @@ function solveEquation(a,b,c){
         return result;
     }
 }
-// let num = Number(solveEquation(2, -5, 3));
+
 console.log(solveEquation(2, -5, 3));
 
 
