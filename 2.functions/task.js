@@ -1,28 +1,3 @@
-// function getArrayParams(...arr) {
-
-//   return { min: min, max: max, avg: avg };
-// }
-
-// function summElementsWorker(...arr) {
-
-// }
-
-// function differenceMaxMinWorker(...arr) {
-
-// }
-
-// function differenceEvenOddWorker(...arr) {
-
-// }
-
-// function averageEvenElementsWorker(...arr) {
-
-// }
-
-// function makeWork (arrOfArr, func) {
-
-// }
-
 //Задание 1
 function getArrayParams(...arr){
   let minimum = 0, 
@@ -30,13 +5,8 @@ function getArrayParams(...arr){
   amount = 0, 
   avg = 0;
 
-  for(let i = 0; i < arr.length; i++){
-      minimum = Math.min.apply(null, arr)
-  }  
-  
-  for(let i = 0; i < arr.length; i++){
-      maximum = Math.max.apply(null, arr)
-  }
+  minimum = Math.min(...arr)
+  maximum = Math.max(...arr)
   
   for(let i = 0; i < arr.length; i++){
       amount += arr[i];
@@ -49,17 +19,13 @@ console.log(getArrayParams(-99, 99, 10));
 
 
 
-
 //Задание 2
 //Сумма вводимых элементов
+
+
+
 function summElementsWorker(...argum){
   let summ = 0;
-
-  for(let i = 0; i < argum.length; i++){
-    if(argum == 0){
-      return 0;
-    }
-  }
 
   for(let i = 0; i < argum.length; i++){
       summ += argum[i];
@@ -69,32 +35,14 @@ function summElementsWorker(...argum){
 
 // //Максимум и минимум
 function differenceMaxMinWorker(...argum){
-  let newEmptyArr = [];
+  if(argum.length === 0) return 0;
   let maximum = 0,
-  minimum = 0,
-  diffMaxMin = 0;
-
-  //Проверка на пустой массив 
-  for(let i = 0; i < argum.length; i++){
-    if(argum == 0){
-      return 0;
-    }
-  }
+  minimum = 0;
   
-  //Максимум
-  for(let i = 0; i < argum.length; i++){
-      maximum = +Math.max.apply(null,argum);
-  }
+  maximum = Math.max(...argum) 
+  minimum = Math.min(...argum)
   
-  //Минимум
-  for(let i = 0; i < argum.length; i++){
-      minimum = +Math.min.apply(null,argum);
-  }
-  
-  diffMaxMin = maximum - minimum;
-  newEmptyArr.push(diffMaxMin);
-  newEmptyArr.join(",")
-  return parseInt(newEmptyArr);;
+  return maximum - minimum;
 }
 
 //Разница суммы четных и нечетных элементов
@@ -102,12 +50,6 @@ function differenceEvenOddWorker(...argum){
   let sumEvenElement = 0,
   sumOddElement = 0,
   difference = 0;
-
-  for(let i = 0; i < argum.length; i++){
-    if(argum[i] == 0){
-      return average;
-    }
-  }
   
   for(let i = 0; i < argum.length; i++){
       if(argum[i] % 2 == 0){
@@ -127,12 +69,6 @@ function averageEvenElementsWorker(...argum){
   let sumEvenElement = 0,
   countEvenElement = 0,
   average = 0;
-
-  for(let i = 0; i < argum.length; i++){
-    if(argum[i] == 0){
-      return average;
-    }
-  }
   
   for(let i = 0; i < argum.length; i++){
       if(argum[i] % 2 == 0){
@@ -143,10 +79,10 @@ function averageEvenElementsWorker(...argum){
   }
   return average;
 }
-console.log(summElementsWorker(10, 10, 11, 20, 10))
-console.log(differenceMaxMinWorker(0, 0, 0, -1, -100))
-console.log(differenceEvenOddWorker(72, 75, 51, 87, 43))
-console.log(averageEvenElementsWorker(30, 41, 55, 96, 62))
+console.log(summElementsWorker())
+console.log(differenceMaxMinWorker())
+console.log(differenceEvenOddWorker())
+console.log(averageEvenElementsWorker())
 
 
 
@@ -154,13 +90,27 @@ console.log(averageEvenElementsWorker(30, 41, 55, 96, 62))
 
 function makeWork (arrOfArr, func) {
   let maxWorkerResult = -Infinity;
-  let secondSeparation = {...arrOfArr};
   let resultOfFunc = 0;
   for(let i = 0; i < arrOfArr.length; i++){
-    resultOfFunc = func(secondSeparation[i]);
+    resultOfFunc = func(...arrOfArr[i]);
     if(resultOfFunc > maxWorkerResult){
-      (maxWorkerResult = resultOfFunc).toFixed(2);
+      maxWorkerResult = resultOfFunc;
     }
   }
-  console.log(maxWorkerResult)
+  return maxWorkerResult;
 }
+
+const arr = [[10, 10, 11, 20, 10], [67, 10, 2, 39, 88], [72, 75, 51, 87, 43], [30, 41, 55, 96, 62]];
+console.log(makeWork(arr, summElementsWorker));
+
+
+
+
+
+
+
+
+
+
+
+
